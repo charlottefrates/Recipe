@@ -1,3 +1,4 @@
+
 function recipeFactory(name, ingredients, steps) {
   // your code here
   return {
@@ -6,7 +7,7 @@ function recipeFactory(name, ingredients, steps) {
     steps: steps,
 
     stepsHtml: function() {
-      return '<ol>' + recipeFactory.steps.map(
+      return '<ul>' + recipeFactory.steps.map(
         function(step) {return '<li>' + step + '</li>'; }).join('') + '</ul>';
     },
 
@@ -18,6 +19,22 @@ function recipeFactory(name, ingredients, steps) {
   }
 }
 
-var recipe = recipeFactory('grilled cheese',['2 slices bread', 'butter', '1 slice cheese'],['Butter bread', 'Put cheese between bread', 'Toast bread on stove']);
 
-console.log(recipe);
+
+function testRecipeFactory() {
+  var grilledCheese = recipeFactory(
+    'grilled cheese',
+    ['2 slices bread', 'butter', '1 slice cheese'],
+    ['Butter bread', 'Put cheese between bread', 'Toast bread on stove']
+  );
+  if (grilledCheese) {
+    // `$` is a shortcut to the jQuery library, which
+    // you'll learn about in the next unit.
+    // Here, we're using jQuery to update elements in the HTML
+    $('.js-recipe-name').html(grilledCheese.name);
+    $('.js-ingredients').html(grilledCheese.ingredientsHtml());
+    $('.js-steps').html(grilledCheese.stepsHtml());
+  }
+}
+
+document.write (testRecipeFactory);
